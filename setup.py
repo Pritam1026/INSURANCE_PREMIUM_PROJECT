@@ -20,9 +20,6 @@ def get_requirements(FILE_NAME)->List[str]:
     except Exception as e:
         raise(e)
 
-
-
-
 setup( 
     name='Insurance', 
     version='0.0.1', 
