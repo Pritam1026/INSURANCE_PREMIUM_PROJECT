@@ -20,5 +20,3 @@ if __name__=="__main__":
     json_records=list(json.loads(df.T.to_json()).values()) #Converting the data to json records.
 
     client[DATABASE_NAME][COLLECTION_NAME].insert_many(json_records) #Loading data to mongodb
-
-    
