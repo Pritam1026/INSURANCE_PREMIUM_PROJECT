@@ -5,6 +5,7 @@ import sys
 from Insurance.config import mongo_client
 from Insurance.exception import InsuranceException
 from Insurance.logger import logging
+import yaml
 
 DATABASE_NAME="INSURANCE" 
 COLLECTION_NAME="INSURANCE_PROJECT"
@@ -28,4 +29,27 @@ def get_collection_as_dataframe(database_name:str=DATABASE_NAME,collection_name:
         raise InsuranceException(e,sys)
 
 
+
+def convert_columns_float(df:pd.DataFrame,exclude_columns:list)->pd.DataFrame:
+    try:
+        columns=[column for column in df.columns if column not in exclude_columns]
+        for column in columns:
+            if df[column].dtype!='O':
+                df[column]=df[column].astype(np.float64)
+        
+        return df
+
+    except Exception as e:
+        raise InsuranceException(e,sys)
+    
+
+def write_yaml_file(file_path,data:dict):
+    try:
+        file_dir=os.path.dirname(file_path)
+        os.makedirs(file_dir,exist_ok=True)
+        with open(file_path,'w') as file:
+            yaml.dump(data,file)
+
+    except Exception as e:
+        raise InsuranceException(e,sys)
 
