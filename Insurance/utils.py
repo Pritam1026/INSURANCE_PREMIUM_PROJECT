@@ -6,6 +6,7 @@ from Insurance.config import mongo_client
 from Insurance.exception import InsuranceException
 from Insurance.logger import logging
 import yaml
+import dill
 
 DATABASE_NAME="INSURANCE" 
 COLLECTION_NAME="INSURANCE_PROJECT"
@@ -52,4 +53,28 @@ def write_yaml_file(file_path,data:dict):
 
     except Exception as e:
         raise InsuranceException(e,sys)
+    
+
+def save_object(file_path:str,obj:object)->None:
+    try:
+        os.makedirs(os.path.dirname(file_path),exist_ok=True)
+        with open(file_path,'wb') as file_obj:
+            dill.dump(obj,file_obj)
+
+
+    except Exception as e:
+        raise InsuranceException(e,sys)
+    
+
+def load_object(file_path:str,)->object:
+    try:
+        if not os.path.exists(file_path):
+            raise Exception(f'The file:{file_path} is not available')
+        else:
+            with open(file_path,'rb') as file_obj:
+                return dill.open(file_obj)
+         
+    except Exception as e:
+        raise InsuranceException(e,sys)
+
 
