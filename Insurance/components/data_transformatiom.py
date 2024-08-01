@@ -1,4 +1,5 @@
 import pandas as pd
+import numpy as np
 
 
 
@@ -73,9 +74,15 @@ class DataTransFormation:
             input_feature_train_arr=transformation_pipeline.transform(input_feature_train_df)
             input_feature_test_arr=transformation_pipeline.transform(input_feature_test_df)
 
+            train_arr=np.c_[input_feature_train_arr,target_feature_train_arr]
+            test_arr=np.c_[input_feature_test_arr,target_feature_test_arr]
+
             save_object(file_path=self.data_transformation_config.transformer_object_path,
                               obj=transformation_pipeline)
             save_object(file_path=self.data_transformation_config.target_encoder_path,obj=label_encoder)
+
+            save_object(file_path=self.data_transformation_config.transformed_train_path,obj=train_arr)
+            save_object(file_path=self.data_transformation_config.transformed_test_path,obj=test_arr)
 
             data_transformation_artifact=artifact_entity.DataTransformationArtifact(
             transformer_object_path=self.data_transformation_config.transformer_object_path,
