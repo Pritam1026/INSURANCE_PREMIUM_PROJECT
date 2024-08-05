@@ -77,4 +77,3 @@ def load_object(file_path:str,)->object:
     except Exception as e:
         raise InsuranceException(e,sys)
 
-

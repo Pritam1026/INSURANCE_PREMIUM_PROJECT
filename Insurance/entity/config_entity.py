@@ -62,8 +62,6 @@ class DataTransformationConfig:
             self.transformed_train_path:str=os.path.join(self.data_transformation_dir,TRAIN_FILE_NAME.replace("csv","npz"))
             self.transformed_test_path:str=os.path.join(self.data_transformation_dir,TEST_FILE_NAME.replace("csv","npz"))
             self.target_encoder_path:str=os.path.join(self.data_transformation_dir,TRANSFORMER_TARGET_ENCODER_FILE_PATH)
-
-
         except Exception as e:
             raise InsuranceException(e,sys)
 
