@@ -72,8 +72,18 @@ def load_object(file_path:str,)->object:
             raise Exception(f'The file:{file_path} is not available')
         else:
             with open(file_path,'rb') as file_obj:
-                return dill.open(file_obj)
+                return dill.load(file_obj)
          
+    except Exception as e:
+        raise InsuranceException(e,sys)
+
+
+def load_numpy_array(file_path:str)->np.ndarray:
+    try:
+        os.makedirs(os.path.dirname(file_path),exist_ok=True)
+        with open(file_path,'rb') as file_obj:
+            return np.load(file_obj)
+        
     except Exception as e:
         raise InsuranceException(e,sys)
 

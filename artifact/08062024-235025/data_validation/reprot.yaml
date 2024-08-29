@@ -1,0 +1,47 @@
+Missing Value within Base dataset: []
+Missing value within base dataset: []
+Missing_value_within_base_data: []
+data_drift_within_test_dataset:
+  age:
+    P-value: 0.9832621761358411
+    same_distribution: true
+  bmi:
+    P-value: 0.2770319285257158
+    same_distribution: true
+  children:
+    P-value: 0.7397037530186574
+    same_distribution: true
+  expenses:
+    P-value: 0.9378500318092021
+    same_distribution: true
+  region:
+    P-value: 1.0
+    same_distribution: true
+  sex:
+    P-value: 1.0
+    same_distribution: true
+  smoker:
+    P-value: 1.0
+    same_distribution: true
+data_drift_within_train_dataset:
+  age:
+    P-value: 0.9999999999999577
+    same_distribution: true
+  bmi:
+    P-value: 0.9960886525924891
+    same_distribution: true
+  children:
+    P-value: 0.9999982522127668
+    same_distribution: true
+  expenses:
+    P-value: 0.9999999998590569
+    same_distribution: true
+  region:
+    P-value: 1.0
+    same_distribution: true
+  sex:
+    P-value: 1.0
+    same_distribution: true
+  smoker:
+    P-value: 1.0
+    same_distribution: true

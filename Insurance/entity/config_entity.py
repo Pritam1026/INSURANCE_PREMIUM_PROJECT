@@ -10,6 +10,7 @@ TRANSFORMER_OBJECT_FILE_NAME='transformer.pkl'
 TRANSFORMED_TRAIN_FILE_NAME='tramsformed_train.csv'
 TRANSFORMED_TEST_FILE_NAME='transformed_test.csv'
 TRANSFORMER_TARGET_ENCODER_FILE_PATH='target_encoder.pkl'
+MODEL_FILE_NAME="model.pkl"
 
 
 class TrainingpipelineConfig:
@@ -64,6 +65,26 @@ class DataTransformationConfig:
             self.target_encoder_path:str=os.path.join(self.data_transformation_dir,TRANSFORMER_TARGET_ENCODER_FILE_PATH)
         except Exception as e:
             raise InsuranceException(e,sys)
+        
+
+class ModelTrainingConfig:
+
+    def __init__(self,training_pipeline_config:TrainingpipelineConfig):
+        try:
+            self.model_trainer_dir=os.path.join(training_pipeline_config.artifact_dir,'model_trainer')
+            self.model_path=os.path.join(self.model_trainer_dir,MODEL_FILE_NAME)
+            self.expected_accuracy=0.7
+            self.overfitting_threshold=0.3
+
+        except Exception as e:
+            raise InsuranceException(e,sys)
+        
+
+class ModelEvaluationConfig:
+    def __init__(self,training_pipeline_config:TrainingpipelineConfig):
+        self.change_threshold=0.01
+            
+    
 
         
 
